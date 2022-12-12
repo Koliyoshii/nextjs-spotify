@@ -10,8 +10,6 @@ async function refreshAccessToken(token) {
 
     const { body: refreshedToken } = await spotifyApi.refreshAccessToken();
 
-    console.log("REFRESHED TOKEN IS: ", refreshedToken);
-
     return {
       ...token,
       accessToken: refreshedToken.access_token,
@@ -27,13 +25,13 @@ async function refreshAccessToken(token) {
     };
   }
 }
-console.log("Spotify Client Id >>>>>", process.env.SPOTIFY_CLIENT_ID)
+
 export const authOptions = {
   // Configure one or more authentication providers
   providers: [
     SpotifyProvider({
-      clientId: process.env.SPOTIFY_CLIENT_ID,
-      clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+      clientId: process.env.NEXT_PUBLIC_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
       authorization: LOGIN_URL,
     }),
   ],

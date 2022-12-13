@@ -5,6 +5,11 @@ import { getProviders, signIn } from "next-auth/react";
 function LoginPage(props) {
   const { providers } = props;
 
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    signIn(providers.spotify.id, { callbackUrl: "/" })
+  }
+
   return (
     <div className=" flex flex-col items-center bg-black min-h-screen w-full justify-center">
       <div className="flex flex-col items-center">
@@ -17,7 +22,7 @@ function LoginPage(props) {
         />
         <button
           className="bg-green-400 text-white p-5 rounded-full"
-          onClick={() => signIn(providers.spotify.id, { callbackUrl: "/" })}
+          onClick={handleSignIn}
         >
           Login with {providers.spotify.name}
         </button>
